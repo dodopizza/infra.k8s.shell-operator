@@ -72,11 +72,13 @@ func (m *ManagerEventsHandler) Start() {
 			logEntry := m.logger.With("operator.component", "handleEvents")
 			select {
 			case crontab := <-m.scheduleManager.Ch():
+				log.Info("[~] Schedule event")
 				if m.scheduleCb != nil {
 					tailTasks = m.scheduleCb(crontab)
 				}
 
 			case kubeEvent := <-m.kubeEventsManager.Ch():
+				log.Info("[~] Kube event")
 				if m.kubeEventCb != nil {
 					tailTasks = m.kubeEventCb(kubeEvent)
 				}
@@ -88,6 +90,8 @@ func (m *ManagerEventsHandler) Start() {
 
 			m.taskQueues.DoWithLock(func(tqs *queue.TaskQueueSet) {
 				for _, resTask := range tailTasks {
+					log.Info("[~] Add task %s to queue %s", resTask.GetId(), resTask.GetQueueName())
+					log.Info("%v", resTask)
 					if q := tqs.Queues[resTask.GetQueueName()]; q == nil {
 						log.Error("Possible bug!!! Got task for queue but queue is not created yet.",
 							slog.String("queueName", resTask.GetQueueName()),
