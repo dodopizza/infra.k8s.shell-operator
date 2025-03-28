@@ -1,4 +1,4 @@
-# Publish flant/shell-operator image on hub.docker.com.
+# Publish dodopizza/infra.k8s.shell-operator image on hub.docker.com.
 # Build 'latest' tag if started manually on default branch.
 # Build 'latest' tag when PR is merged into the default branch.
 # Build 'v*.*.*' and 'latest' tags on push released tag.
@@ -15,8 +15,8 @@ on:
 env:
   QEMU_PLATFORMS: arm64,arm
   BUILDX_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
-  DOCKER_HUB_REPO: flant/shell-operator
-  GHCR_IO_REPO: ghcr.io/flant/shell-operator
+  DOCKER_HUB_REPO: dodopizza/infra.k8s.shell-operator
+  GHCR_IO_REPO: ghcr.io/dodopizza/infra.k8s.shell-operator
 
 jobs:
   check:

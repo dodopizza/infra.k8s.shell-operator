@@ -1,4 +1,4 @@
-# Publish flant/shell-operator-dev image to hub.docker.com and ghcr.io.
+# Publish dodopizza/infra.k8s.shell-operator image to hub.docker.com and ghcr.io.
 # Start when PR is labeled with 'publish/image/dev' or 'publish/image/dev/amd64'.
 # Label 'publish/image/dev/amd64' publishes image only for amd64 arhitecture.
 # Label 'publish/image/dev' publishes a multi-arch image, it is a long-lasting operation (~1h).
@@ -10,7 +10,7 @@ env:
   QEMU_PLATFORMS: arm64,arm
   BUILDX_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
   BUILDX_PLATFORMS_AMD64: "linux/amd64"
-  GHCR_IO_REPO: ghcr.io/flant/shell-operator-dev
+  GHCR_IO_REPO: github.com/dodopizza/infra.k8s.shell-operator
 
 jobs:
   check:
